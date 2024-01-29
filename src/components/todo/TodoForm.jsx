@@ -5,11 +5,13 @@ export const TodoForm = ({ onSubmitTodo }) => {
         e.preventDefault();
         const title = e.target.title.value;
         const content = e.target.content.value;
+        const deadline = e.target.deadline.value;
 
         onSubmitTodo({
             id: crypto.randomUUID(),
             title,
             content,
+            deadline,
             isDone: false,
         });
         e.target.reset();
@@ -18,6 +20,7 @@ export const TodoForm = ({ onSubmitTodo }) => {
         <form onSubmit={handleSubmit}>
             <input type="text" placeholder="제목" name="title" />
             <input type="text" placeholder="내용" name="content" />
+            <input type="date" name="deadline" />
             <button type="submit">제출</button>
         </form>
     );
