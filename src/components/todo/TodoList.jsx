@@ -1,10 +1,10 @@
 import React from "react";
 import { TodoItem } from "./TodoItem";
 
-export const TodoList = ({ todos, onDelTodo, onToggleTodo }) => {
+export const TodoList = ({ headTitle, todos, onDelTodo, onToggleTodo }) => {
     return (
         <section>
-            <h2>Working!</h2>
+            <h2>{headTitle}</h2>
             <ul>
                 {todos.map((todo) => (
                     <TodoItem

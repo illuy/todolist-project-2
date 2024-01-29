@@ -12,6 +12,7 @@ export const TodoForm = ({ onSubmitTodo }) => {
             content,
             isDone: false,
         });
+        e.target.reset();
     };
     return (
         <form onSubmit={handleSubmit}>
