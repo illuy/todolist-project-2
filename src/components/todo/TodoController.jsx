@@ -4,6 +4,7 @@ import { TodoList } from "./TodoList";
 
 export const TodoController = () => {
     const [todos, setTodos] = useState([]);
+    const [sortOrder, setSortOrder] = useState("asc");
     const onSubmitTodo = (todo) => {
         setTodos((prevTodos) => [todo, ...prevTodos]);
     };
@@ -24,11 +25,37 @@ export const TodoController = () => {
             })
         );
     };
+    const onChangeSortOrder = (value) => {
+        const nextSortOrder = value;
+        setSortOrder(nextSortOrder);
+        if (nextSortOrder === "asc") {
+            setTodos((prevTodos) =>
+                [...prevTodos].sort(
+                    (a, b) => new Date(a.deadline) - new Date(b.deadline)
+                )
+            );
+            return;
+        }
+        setTodos((prevTodos) =>
+            [...prevTodos].sort(
+                (a, b) => new Date(b.deadline) - new Date(a.deadline)
+            )
+        );
+    };
     const workingTodos = todos.filter((todo) => !todo.isDone);
     const doneTodos = todos.filter((todo) => todo.isDone);
     return (
         <main>
             <TodoForm onSubmitTodo={onSubmitTodo} />
+            <div>
+                <select
+                    value={sortOrder}
+                    onChange={(e) => onChangeSortOrder(e.target.value)}
+                >
+                    <option value="asc">오름차순</option>
+                    <option value="desc">내림차순</option>
+                </select>
+            </div>
             <TodoList
                 headTitle="Working!"
                 todos={workingTodos}
