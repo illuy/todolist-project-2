@@ -3,9 +3,15 @@ import React from "react";
 export const TodoForm = ({ onSubmitTodo }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
+
         const title = e.target.title.value;
         const content = e.target.content.value;
         const deadline = e.target.deadline.value;
+
+        if (!title || !content || !deadline) {
+            alert("제목, 내용, 그리고 달력은 필수 입력 항목입니다.");
+            return;
+        }
 
         onSubmitTodo({
             id: crypto.randomUUID(),
