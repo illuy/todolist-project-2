@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { TodoForm } from "./TodoForm";
 import { TodoList } from "./TodoList";
+import styled from "styled-components";
+
+const TodoListSort = styled.select`
+    margin: 10px;
+`;
 
 export const TodoController = () => {
     const [todos, setTodos] = useState([]);
@@ -48,13 +53,13 @@ export const TodoController = () => {
         <main>
             <TodoForm onSubmitTodo={onSubmitTodo} />
             <div>
-                <select
+                <TodoListSort
                     value={sortOrder}
                     onChange={(e) => onChangeSortOrder(e.target.value)}
                 >
                     <option value="asc">오름차순</option>
                     <option value="desc">내림차순</option>
-                </select>
+                </TodoListSort>
             </div>
             <TodoList
                 headTitle="Working!"
@@ -62,6 +67,7 @@ export const TodoController = () => {
                 onDelTodo={onDelTodo}
                 onToggleTodo={onToggleTodo}
             />
+            <hr />
             <TodoList
                 headTitle="Done!"
                 todos={doneTodos}
