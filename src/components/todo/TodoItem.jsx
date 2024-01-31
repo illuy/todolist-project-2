@@ -22,6 +22,7 @@ const TodoCardArtiBox = styled.article`
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    text-decoration: ${(props) => (props.isDone ? "line-through" : "none")};
 `;
 const TodoCardTitle = styled.h3`
     font-size: 2rem;
@@ -60,7 +61,6 @@ const TodoCardBtnBoxItem = styled.button`
     &:nth-child(2) {
         margin-right: 5px;
         background-color: ${(props) => (props.isDone ? "orange" : "royalblue")};
-
         /* {isDone ? "취소" : "완료"} */
     }
 `;
@@ -75,7 +75,7 @@ export const TodoItem = ({ todo, onDelTodo, onToggleTodo }) => {
     });
     return (
         <TodoCard>
-            <TodoCardArtiBox>
+            <TodoCardArtiBox isDone={isDone}>
                 <TodoCardTitle>{title}</TodoCardTitle>
                 <TodoCardCont>{content}</TodoCardCont>
                 <TodoCardTime>{formattedDeadLine}</TodoCardTime>
